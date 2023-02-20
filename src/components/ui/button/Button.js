@@ -5,8 +5,8 @@ import { motion } from "framer-motion"
 
 
 function Button(props) {
-    function callback(e, param) {
-        props.callBackButton(e, param);
+    function callback(e) {
+        props.callBackButton(e);
     }
 
     return (
