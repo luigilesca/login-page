@@ -8,6 +8,10 @@ function NewInput(props) {
         props.callbackInput(e)
     }
 
+    function callbackClick(e) {
+        props.callbackInputClick(e)
+    }
+
     return (
         <div
             className={ props.styleNewInput }>
@@ -24,6 +28,8 @@ function NewInput(props) {
                 max={ props.maxInput }
                 placeholder={ props.placeholderInput }
                 onChange={ callback }
+                //
+                onClick={ callbackClick }
             />
         </div>
     )

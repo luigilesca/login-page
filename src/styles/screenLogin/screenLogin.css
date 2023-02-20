@@ -1,0 +1,17 @@
+.container {
+    border: 2px solid red;
+    margin: 70px 5%;
+}
+
+.container__title {
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 43px;
+}
+
+.container__input {
+    border: 2px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
