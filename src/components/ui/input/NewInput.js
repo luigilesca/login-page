@@ -71,7 +71,7 @@ NewInput.defaultProps = {
 NewInput.propTypes = {
     styleNewInput: PropTypes.string,
     styleLabel: PropTypes.string,
-    callbackInput: PropTypes.func.isRequired,
+    callbackInput: PropTypes.func,
     type: PropTypes.string,
     name: PropTypes.string,
     value: PropTypes.string,

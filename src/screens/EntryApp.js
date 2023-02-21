@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewInput from '../components/ui/input/NewInput'
 import Button from "../components/ui/button/Button"
+import CheckBoxInput from '../components/functionComponents/CheckBoxInput'
 import { FaFacebookF } from "react-icons/fa"
 import { IoLogoTwitter } from "react-icons/io"
 import { TbExclamationMark } from "react-icons/tb"
@@ -9,10 +10,10 @@ import "../styles/entryApp/entryApp.css"
 class EntryApp extends Component {
     constructor(props) {
         super(props)
-        this.isPasswordEmpty = true;
-        this.isEmailEmpty = true;
-        this.isEmailValid = true;
-        this.typePasswordField = "password"
+        this.varPasswordEmpty = true;
+        this.varEmailEmpty = true;
+        this.varEmailValid = true;
+        this.varTypePasswordField = "password"
 
         this.state = {
             email: "",
@@ -28,15 +29,10 @@ class EntryApp extends Component {
         }
     }
 
-    componentDidMount() {
-        this.checkErrorPassword = true;
-        this.checkErrorEmail = true;
-    }
+    componentDidMount() { }
 
     componentDidUpdate() {
-        console.log("didUpdate");
-
-        this.state.isPasswordVisible ? (this.typePasswordField = "text") : (this.typePasswordField = "password")
+        this.state.isPasswordVisible ? (this.varTypePasswordField = "text") : (this.varTypePasswordField = "password")
     }
 
     // controlla validità email
@@ -44,23 +40,23 @@ class EntryApp extends Component {
         const validPassword = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
         if (!validPassword.test(email)) {
             console.log("non valida");
-            this.isEmailValid = false;
+            this.varEmailValid = false;
             return;
         }
         console.log("email valida");
-        this.isEmailValid = true;
+        this.varEmailValid = true;
     }
 
     // controlla password input se è vuota
     checkEmptyPassword = (e) => {
         let passwordInput = e.target.value;
-        passwordInput !== "" ? (this.isPasswordEmpty = false) : (this.isPasswordEmpty = true)
+        passwordInput !== "" ? (this.varPasswordEmpty = false) : (this.varPasswordEmpty = true)
     }
 
     // controlla password input se è vuota
     checkEmptyEmail = (inputEmail) => {
         let emailInput = inputEmail;
-        emailInput !== "" ? (this.isEmailEmpty = false) : (this.isEmailEmpty = true)
+        emailInput !== "" ? (this.varEmailEmpty = false) : (this.varEmailEmpty = true)
     }
 
     // controlla input email
@@ -73,24 +69,21 @@ class EntryApp extends Component {
     // controlla bottone login e fa i diversi check
     logIn = () => {
         this.setState({
-            isPasswordEmpty: this.isPasswordEmpty,
-            isEmailEmpty: this.isEmailEmpty,
-            isEmailValid: this.isEmailValid,
+            isPasswordEmpty: this.varPasswordEmpty,
+            isEmailEmpty: this.varEmailEmpty,
+            isEmailValid: this.varEmailValid,
             checkErrorPassword: false,
             checkErrorEmail: false,
         })
     }
 
     inputClickPassword = () => {
-        console.log("abbiamo cliccato")
         this.setState({
             checkErrorPassword: true
         })
     }
 
     inputClickEmail = () => {
-        console.log("abbiamo cliccato")
-
         this.setState({
             checkErrorEmail: true
         })
@@ -167,26 +160,33 @@ class EntryApp extends Component {
                         {
                             this.state.isPasswordEmpty && !this.state.checkErrorPassword &&
                             <div className='alert__password'>
-                                <dov className="alert__container">
+                                <div className="alert__container">
 
                                     <p>Password Is Required</p>
                                     <span>
                                         <TbExclamationMark />
                                     </span>
-                                </dov>
+                                </div>
                             </div>
                         }
 
                         {
                             <div className='container__info'>
                                 <div className='remember'>
-                                    <NewInput
-                                        callbackInput={ this.inputClickRememberMe }
+                                    { <CheckBoxInput
+                                        // callbackInput={ this.inputClickRememberMe }
                                         styleNewInput={ "checkbox" }
                                         typeInput={ "checkbox" }
-                                    />
-                                    <span>
-                                        <a>Remember Me</a>
+                                    /> }
+
+                                    {/* <input
+                                        className='checkbox'
+                                        type="checkbox"
+                                        onClick={ this.inputClickRememberMe }
+                                    /> */}
+
+                                    <span className='remember__link'>
+                                        <a>Remember me</a>
                                     </span>
                                 </div>
                                 <span>
@@ -196,7 +196,7 @@ class EntryApp extends Component {
                         }
 
                         <Button
-                            label={ "Login in" }
+                            label={ "Login" }
                             styleCss={ "btn" }
                             callBackButton={ this.logIn }
                         />

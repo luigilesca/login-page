@@ -1,3 +1,38 @@
+# Informazioni sul progetto
+ - Il file dell'app principale è nella cartella screens -> EntryApp.js
+ - il file css dei EntryApp è nella cartella styles/entryApp/entryApp.css
+ - I componenti più piccoli come bottoni o input sono nella cartella components. Insieme ci sono anche i css
+ - Nella cartella utils è presente una funzione per il localStorage e per il getStorage e una funzione per il routing nel componente di classe (in caso servissero)
+
+# IMPORTANTE per il componente Input
+- Il componente per gestire l'input si chiama NewInput. In EntryApp riceve diverse props. 
+Per gestire l'email, NewInput riceve come type ="text" e non "email". E' importante tenere type="text" per gestire l'animazione nel css, dato che è presente la proprietà required nel componente NewInput.
+
+# STATI e Variabili di EntryApp
+- tutte le variabili globali iniziano con la parola var (ad esempio this.varEmptyEmail)
+
+        this.varPasswordEmpty = true;            // variabile di controllo se la password è vuota
+        this.varEmailEmpty = true;               // variabile di controllo se l'email  è vuota
+        this.varEmailValid = true;               // variabile di controllo se l'email  è valida (Controllo regex)
+        this.varTypePasswordField = "password"   // variabile di stato per settare il field password a type "text" o "password per
+                                                 // permettere la visibilità quando si schiaccia l'occhio
+
+        this.state = {
+            email: "",                           // stato per memorizzare l'email (in futuro da passare come stato: sicurezza)
+            password: "",                        // stato per memorizzare la password (in futuro da passare come stato: sicurezza)
+            isPasswordVisible: false,            // stato per rendere visibile o meno la password tramite l'occhio
+            isEmailValid: false,                 // stato per verificare la validità dell'email (regex)
+            isEmailEmpty: true,                  // stato per verificare il riempimento dell'email
+            isPasswordEmpty: true,               // stato per verificare il riempimento della password
+            rememberMe: false,                   // stato per gestire il "ricordami" dalla checknox
+            checkErrorPassword: true,            // stato per gestire la scritta d'errore in caso di inserimento errato della password
+            checkErrorEmail: true,               // stato per gestire la scritta d'errore in caso di inserimento errato dell'email
+            typePasswordField: "password"        // stato per memorizzare la variabile varTypePasswordField (vedi sopra)
+        }
+    }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
