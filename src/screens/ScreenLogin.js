@@ -169,10 +169,17 @@ class ScreenLogin extends Component {
                                                 {
                                                         ((this.state.isEmailEmpty && !this.state.checkErrorEmail) ||
                                                                 (!this.state.isEmailValid && !this.state.checkErrorEmail)) &&
-                                                        <div className='alert__email '>
-                                                                <p>Inserisci email</p>
+                                                        <div className='alert__email'>
+                                                                <div className="alert__container">
+
+                                                                        <p>Valid email is required: ex@abc.xyz</p>
+                                                                        <span>
+                                                                                <TbExclamationMark />
+                                                                        </span>
+                                                                </div>
                                                         </div>
                                                 }
+
                                                 <NewInput
                                                         callbackInput={ this.checkEmptyPassword }
                                                         callbackInputClick={ this.inputClickPassword }
@@ -188,10 +195,13 @@ class ScreenLogin extends Component {
                                                 {
                                                         this.state.isPasswordEmpty && !this.state.checkErrorPassword &&
                                                         <div className='alert__password'>
-                                                                <p>Password Is Required</p>
-                                                                <span>
-                                                                        <TbExclamationMark />
-                                                                </span>
+                                                                <dov className="alert__container">
+
+                                                                        <p>Password Is Required</p>
+                                                                        <span>
+                                                                                <TbExclamationMark />
+                                                                        </span>
+                                                                </dov>
                                                         </div>
                                                 }
 

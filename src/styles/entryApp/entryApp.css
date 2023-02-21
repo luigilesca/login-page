@@ -1,29 +1,236 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.App {
-    text-align: center;
+:root {
+    --inputColor: #555;
+    --backgroundColor: #F7F7F7;
+    --buttonBackgroundColor: #6675df;
+    --buttonBackgroundColorHover: #373840;
+    --buttonColorText: #fff;
+    --borderInputColor: #e6e6e6;
+    --borderInputColorHover: #6675df;
+    --facebookIcon: #3b5998;
+    --twitterIcon: #1da1f2;
 }
 
-.App-header {
-    background-color: #c2c6cb;
-    min-height: 100vh;
+.section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.section .container__image {
+    /* border: 2px solid red; */
+    position: relative;
+    width: 65%;
+    height: 100%;
+}
+
+
+.section .container__image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container__login {
+    /* border: 2px solid blue; */
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-/* justify-content: center; */
-
-
-
-/* .container {
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     justify-content: center;
-    margin: 30px 10%;
+    align-items: center;
+    min-width: 35%;
+    height: 100vh;
+    margin: 0 4%;
+}
 
-}  */
+.container__title {
+    margin-bottom: 40px;
+    font-weight: 100;
+    text-align: center;
+    font-family: Montserrat-Regular, "sans serif";
+}
+
+.container__input {
+    width: 100%;
+    position: relative;
+}
+
+.alert__email {
+    border: 1px solid red;
+    color: rgb(159, 2, 2);
+    background-color: var(--buttonColorText);
+    padding: 5px;
+    margin-left: 10px;
+    font-weight: 400;
+    width: auto;
+    position: absolute;
+    top: 12%;
+    right: 0%;
+    transform: translate(-10%, -50%);
+    z-index: 99;
+}
+
+.alert__email span {
+    top: 0;
+}
+
+.alert__password {
+    border: 1px solid red;
+    border-radius: 2px;
+    position: absolute;
+    top: 33%;
+    right: 0%;
+    transform: translate(-10%, -50%);
+    color: rgb(159, 2, 2);
+    background-color: var(--buttonColorText);
+    padding: 5px;
+    font-weight: 400;
+    width: auto;
+    z-index: 99;
+}
+
+
+.alert__container {
+    /* border: 2px solid blue; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.alert__container span {
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+}
+
+.container__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container__info a {
+    text-decoration: none;
+    color: var(--inputColor);
+    font-size: 13px;
+}
+
+.remember {
+    display: flex;
+    align-items: center;
+}
+
+.remember a {
+    margin-left: 5px;
+    display: flex;
+}
+
+.container__signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container__signup a {
+    text-decoration: none;
+    color: var(--inputColor);
+}
+
+
+.container__social-link {
+    display: flex;
+    justify-content: center;
+}
+
+.social {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin: 20px 5px;
+    position: relative;
+    cursor: pointer;
+    position: relative;
+    color: #fff;
+}
+
+.social.facebook {
+    position: relative;
+    background-color: var(--facebookIcon);
+}
+
+.social.facebook:hover,
+.social.twitter:hover {
+    position: relative;
+    background-color: var(--buttonBackgroundColorHover);
+}
+
+.social.twitter {
+    position: relative;
+    background-color: var(--twitterIcon);
+}
+
+.social i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Media queries */
+
+@media screen and (max-width:800px) {
+    .container__image {
+        display: none;
+    }
+
+    .container__login {
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:576px) {
+
+    .container__login {
+        width: 100%;
+        height: 80vh;
+
+    }
+}
+
+@media screen and (max-width:360px) {
+    .container__login {
+        width: 100%;
+        height: 80vh;
+    }
+
+    .alert__password,
+    .alert__email {
+        width: 80%;
+    }
+
+    .alert__container {
+        justify-content: space-between;
+    }
+
+    .container__info {
+        flex-direction: column;
+    }
+
+
+
+
+}

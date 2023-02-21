@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import "./styles/common.css"
 
-import ScreenLogin from "./screens/ScreenLogin"
+import EntryApp from './screens/EntryApp';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-  <ScreenLogin />
+  <EntryApp />
 
 
 );

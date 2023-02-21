@@ -25,6 +25,7 @@ function NewInput(props) {
                 <label>
                     <input
                         required
+
                         type={ props.typeInput }
                         name={ props.nameInput }
                         value={ props.valueInput }
@@ -33,13 +34,13 @@ function NewInput(props) {
                         max={ props.maxInput }
                         placeholder={ props.placeholderInput }
                         onChange={ callback }
-                        //
                         onClick={ callbackClick }
                     />
-
+                    <span className='border'></span>
                     <span className='label-input'>
                         { props.label }
                     </span>
+
                 </label>
             </div>
 
