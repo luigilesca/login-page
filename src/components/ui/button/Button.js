@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './button.css';
-import { motion } from "framer-motion"
+
 
 
 function Button(props) {
@@ -10,7 +10,7 @@ function Button(props) {
     }
 
     return (
-        <motion.div
+        <div
             initial={ props.initial }
             className={ props.styleCss }
             onClick={ callback }
@@ -22,7 +22,7 @@ function Button(props) {
                 </span>
                 { props.label }
             </div>
-        </motion.div>
+        </div>
     );
 }
 

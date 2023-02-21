@@ -10,12 +10,6 @@ root.render(
 
   <ScreenLogin />
 
-  // <BrowserRouter>
-  //   <Rounting />
-  // </BrowserRouter>
-
-  // <ScrennProvaNavbar />
-
 
 );
 

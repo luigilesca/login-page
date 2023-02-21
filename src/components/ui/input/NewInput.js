@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import "./newinput.css"
 
 function NewInput(props) {
@@ -12,38 +13,58 @@ function NewInput(props) {
         props.callbackInputClick(e)
     }
 
+    function callbackIcon(e) {
+        props.callbackIconClick(e)
+    }
+
     return (
         <div
             className={ props.styleNewInput }>
-            <label
-                className={ props.styleLabel }>
-                { props.label }
-            </label>
-            <input
-                type={ props.typeInput }
-                name={ props.nameInput }
-                value={ props.valueInput }
-                id={ props.idInput }
-                min={ props.minInput }
-                max={ props.maxInput }
-                placeholder={ props.placeholderInput }
-                onChange={ callback }
-                //
-                onClick={ callbackClick }
-            />
+
+            <div className='wrapper'>
+                <label>
+                    <input
+                        required
+                        type={ props.typeInput }
+                        name={ props.nameInput }
+                        value={ props.valueInput }
+                        id={ props.idInput }
+                        min={ props.minInput }
+                        max={ props.maxInput }
+                        placeholder={ props.placeholderInput }
+                        onChange={ callback }
+                        //
+                        onClick={ callbackClick }
+                    />
+
+                    <span className='label-input'>
+                        { props.label }
+                    </span>
+                </label>
+            </div>
+
+            { props.styleIcon &&
+                <span className={ props.styleIcon }>
+                    <div className='icon' onClick={ callbackIcon }>
+                        { props.typeIcon ?
+                            <AiOutlineEye /> : <AiOutlineEyeInvisible /> }
+                    </div>
+                </span> }
+
+
         </div>
     )
 }
 
 NewInput.defaultProps = {
-    styleNewInput: "default-newinput",
-    styleLabel: "default-label",
+    styleNewInput: "",
+    styleLabel: "",
     label: "",
     typeInput: "text",
     id: "id-name",
     min: -100,
     max: 100,
-    placeholderInput: "placeholder",
+    placeholderInput: "",
 }
 
 NewInput.propTypes = {

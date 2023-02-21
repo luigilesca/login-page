@@ -1,86 +1,70 @@
-/* .default-newinput {
-    border: 2px solid rgb(255, 0, 0);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-} */
-
-.newinput {
+.input__container {
     /* border: 2px solid blue; */
     font-size: 20px;
     border-radius: 6px;
     outline: transparent;
-    margin: 0 0 10px 0;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     width: 100%;
-}
-
-.newinput ::placeholder {
-    font-size: 16px;
-    text-align: center;
-}
-
-.default-label {
-    font-size: 24px;
+    height: 80px;
+    position: relative;
     margin: 10px 0;
 }
 
-.label {
-    margin: 10px 0;
-    font-size: 18px;
+.wrapper {
+    /* border: 2px solid rgb(60, 255, 0); */
+    width: 100%;
+    height: 80px;
+    position: relative;
 }
 
 input {
-    padding: 8px 15px;
-    font-size: 20px;
-    border-radius: 8px;
-    border: none;
-    outline: transparent;
+    border: 1px solid var(--borderInputColor);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--backgroundColor);
+    font-size: 18px;
+    padding: 20px 30px;
+
 }
 
-input:focus {
-    border: 1px solid rgb(0, 255, 225);
+.label-input,
+.icon {
+    position: absolute;
 }
 
-.newinput-radio {
-    flex-direction: row-reverse;
+.label-input {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    transition: all.4s;
+    pointer-events: none;
 }
 
-.newinput-checkbox {
-    flex-direction: row-reverse;
+input:focus~.label-input {
+    background-color: red;
+    top: 0;
+    transform: scale(0.8);
+    transition: all .4s;
+}
+
+
+.icon {
+    right: 50px;
+    top: 30px
+}
+
+/* .checkbox {
+    border: 1px solid red;
+} */
+
+.checkbox input {
+    width: 16px;
+    height: 16px;
     display: flex;
-    align-items: center;
 }
 
-.newinput-checkbox label {
-    display: inline-block;
-}
-
-.newinput-checkbox input {
-    position: relative;
-    vertical-align: middle;
-    top: 2px;
-}
-
-.newinput-radio label {
-    margin-left: 8px;
-}
-
-
-.newinput-color {
-    flex-direction: row-reverse;
-    align-items: center;
-    margin-bottom: 80px;
-}
-
-.newinput-color input {
-    width: 70px;
-    height: 40px;
-    padding: 5px;
-}
-
-.newinput-color label {
-    margin-left: 10px;
+.checkbox .wrapper {
+    height: auto;
 }

@@ -23,6 +23,10 @@
 import React, { Component } from 'react'
 import NewInput from '../components/ui/input/NewInput'
 import Button from "../components/ui/button/Button"
+import { FaFacebookF } from "react-icons/fa"
+import { IoLogoTwitter } from "react-icons/io"
+import { TbExclamationMark } from "react-icons/tb"
+
 import "../styles/screenLogin/screenLogin.css"
 
 class ScreenLogin extends Component {
@@ -33,8 +37,6 @@ class ScreenLogin extends Component {
                 this.isPasswordEmpty = true;
                 this.isEmailEmpty = true;
                 this.isEmailValid = true;
-                // this.checkErrorPassword = true,
-                //         this.checkErrorEmail = true,
                 this.typePasswordField = "password"
 
 
@@ -58,10 +60,6 @@ class ScreenLogin extends Component {
         }
 
         componentDidUpdate() {
-
-                // this.checkErrorEmail = this.state.checkErrorEmail;
-                // this.checkErrorPassword = this.state.checkErrorPassword;
-
                 console.log("didUpdate");
 
                 this.state.isPasswordVisible ? (this.typePasswordField = "text") : (this.typePasswordField = "password")
@@ -69,21 +67,18 @@ class ScreenLogin extends Component {
         }
         // controlla validità email
         checkValidityEmail(email) {
-                //const validPassword = new RegExp("/^ [a - zA - Z0 -9._ % +-] +@[a - zA - Z0 - 9. -]+\.[a - zA - Z]{ 2,} $/");
                 const validPassword = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
                 if (!validPassword.test(email)) {
                         console.log("non valida");
+                        this.isEmailValid = false;
                         return;
                 }
                 console.log("email valida");
-
+                this.isEmailValid = true;
         }
 
         // controlla password input se è vuota
         checkEmptyPassword = (e) => {
-
-
-
                 let passwordInput = e.target.value;
                 passwordInput !== "" ? (this.isPasswordEmpty = false) : (this.isPasswordEmpty = true)
         }
@@ -104,10 +99,6 @@ class ScreenLogin extends Component {
 
         // controlla bottone login e fa i diversi check
         logIn = () => {
-
-                // this.checkErrorPassword = false;
-                // this.checkErrorEmail = false;
-
                 this.setState({
                         isPasswordEmpty: this.isPasswordEmpty,
                         isEmailEmpty: this.isEmailEmpty,
@@ -147,68 +138,109 @@ class ScreenLogin extends Component {
                 })
         }
 
-
-        /*setVisibilityPassword2 = () => {
-                let typePassword = null;
-                this.state.isPasswordVisible ? typePassword = "text" : typePassword = "password"
-                this.setState({
-                        typePasswordField: typePassword
-                })
-
-        }*/
-
-
         componentWillUnmount() { }
 
 
 
         render() {
                 return (
-                        <div className='container'>
-                                <div className='container__title'>
-                                        <h1>Login to continue</h1>
+                        <div className='section'>
+
+
+                                <div className='container__image'>
+                                        <img src='https://colorlib.com/etc/lf/Login_v18/images/bg-01.jpg' />
                                 </div>
 
-                                <div className='container__input'>
-                                        <NewInput
-                                                label={ "" }
-                                                callbackInput={ this.insertEmail }
-                                                callbackInputClick={ this.inputClickEmail }
-                                                styleNewInput={ "newinput" }
-                                                placeholderInput={ "email" }
-                                                typeInput={ "email" }
-                                        />
 
-                                        { this.state.isEmailEmpty && !this.state.checkErrorEmail && <p>Inserisci email</p> }
-                                        <NewInput
-                                                label={ "" }
-                                                callbackInput={ this.checkEmptyPassword }
-                                                callbackInputClick={ this.inputClickPassword }
-                                                styleNewInput={ "newinput" }
-                                                placeholderInput={ "password" }
-                                                // typeInput={ this.state.typePasswordField }
-                                                typeInput={ this.state.isPasswordVisible ? "text" : "password" }
-                                        />
-                                        <Button
-                                                label={ "occhio" }
-                                                callBackButton={ this.setVisibilityPassword }
-                                        />
-                                        { this.state.isPasswordEmpty && !this.state.checkErrorPassword && <p>Inserisci la password</p> }
+                                <div className='container__login'>
+                                        <div className='container__title'>
+                                                <h1>Login to continue</h1>
+                                        </div>
 
-                                        <NewInput
-                                                label={ "" }
-                                                callbackInput={ this.inputClickRememberMe }
-                                                styleNewInput={ "newinput" }
-                                                // placeholderInput={ "password" }
-                                                typeInput={ "checkbox" }
-                                        />
+                                        <div className='container__input'>
+                                                <NewInput
+                                                        callbackInput={ this.insertEmail }
+                                                        callbackInputClick={ this.inputClickEmail }
+                                                        styleNewInput={ "input__container" }
+                                                        placeholderInput={ "" }
+                                                        typeInput={ "email" }
+                                                        label={ "Email" }
+                                                />
+                                                {
+                                                        ((this.state.isEmailEmpty && !this.state.checkErrorEmail) ||
+                                                                (!this.state.isEmailValid && !this.state.checkErrorEmail)) &&
+                                                        <div className='alert__email '>
+                                                                <p>Inserisci email</p>
+                                                        </div>
+                                                }
+                                                <NewInput
+                                                        callbackInput={ this.checkEmptyPassword }
+                                                        callbackInputClick={ this.inputClickPassword }
+                                                        callbackIconClick={ this.setVisibilityPassword }
+                                                        styleNewInput={ "input__container" }
+                                                        styleIcon={ 'input__icona' }
+                                                        placeholderInput={ "" }
+                                                        label={ "Password" }
+                                                        typeInput={ this.state.isPasswordVisible ? "text" : "password" }
+                                                        typeIcon={ this.state.isPasswordVisible }
+                                                />
+
+                                                {
+                                                        this.state.isPasswordEmpty && !this.state.checkErrorPassword &&
+                                                        <div className='alert__password'>
+                                                                <p>Password Is Required</p>
+                                                                <span>
+                                                                        <TbExclamationMark />
+                                                                </span>
+                                                        </div>
+                                                }
+
+                                                {
+                                                        <div className='container__info'>
+                                                                <div className='remember'>
+                                                                        <NewInput
+                                                                                callbackInput={ this.inputClickRememberMe }
+                                                                                styleNewInput={ "checkbox" }
+                                                                                typeInput={ "checkbox" }
+                                                                        />
+                                                                        <span>
+                                                                                <a>Remember Me</a>
+                                                                        </span>
+                                                                </div>
+                                                                <span>
+                                                                        <a href='#'>Forgot Password?</a>
+                                                                </span>
+                                                        </div>
+                                                }
+
+
+                                                <Button
+                                                        label={ "Login in" }
+                                                        styleCss={ "btn" }
+                                                        callBackButton={ this.logIn }
+                                                />
+                                                <div className='container__signup'>
+                                                        <a href='#'>or sign up using</a>
+                                                </div>
+                                                <div className='container__social-link'>
+
+                                                        <div className='social facebook'>
+                                                                <i><FaFacebookF /></i>
+                                                        </div>
+                                                        <div className='social twitter'>
+                                                                <i><IoLogoTwitter /></i>
+                                                        </div>
+                                                </div>
+                                        </div>
                                 </div>
 
-                                <Button
-                                        label={ "Login in" }
-                                        styleCss={ "btn" }
-                                        callBackButton={ this.logIn }
-                                />
+
+
+
+
+
+
+
                         </div>
                 )
         }
